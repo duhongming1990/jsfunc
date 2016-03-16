@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>汉字转拼音的jQuery插件 - Jquery-school</title>
+<meta name="author" content="Jquery-School" />
+<meta name="Copyright" content="Jquery-School,www.jq-school.com" />
+<meta name="keywords" content="Jquery,Jquery资源,前端设计,div+css" />
+<meta name="description" content="" />
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jQuery.Hz2Py-min.js"></script>
+<script type="text/javascript">
+$(function (){
+	$("#content").live("keyup keydown change blur",function (){
+		var pName=$(this).toPinyin();
+		var nameStr="";
+		var sName=pName.split(";");
+		for(var i=0;i<sName.length;i++){
+			if(i==0){
+			nameStr+=sName[0];
+			}else{
+			nameStr+=sName[i].substring(0,1);
+			}
+		}
+		$("#show").val(nameStr);
+	});
+})
+</script>
+
+</head>
+<body>
+<center>
+<textarea id="content">
+杜
+</textarea><br />
+<textarea id="show"></textarea></center>
+</body>
+</html>
