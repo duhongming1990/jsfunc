@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>获取URL后面的参数</title>
+
+</head>
+
+<body>
+<a href="获取URL后面的参数.html?startDate=2016-03-11&endDate=2016-03-15&name=dhm杜洪明">获取URL后面的参数</a>
+<script type="text/javascript">
+	//获取地址上的url参数
+   function GetRequest() {
+    var url = location.search; //获取url中"?"符后的字串
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+     var str = url.substr(1);
+	 theRequest['urlParameter']=str;
+     strs = str.split("&");
+     for ( var i = 0; i < strs.length; i++) {
+      theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+     }
+    }
+    return theRequest;
+   }
+   //var Request = new Object();
+   var Request = GetRequest();
+   
+   //输出到Google浏览器中的Console
+   console.info("整个URL后面的参数urlParameter:"+Request['urlParameter']);
+   console.info("单一参数startDate:"+Request['startDate']);
+   console.info("单一参数endDate:"+Request['endDate']);
+   console.info("中文参数name:"+Request['name']);
+   
+   //get方法传中文问题
+   var encodName = window.encodeURI(window.encodeURI(Request['name']));
+   console.info("对中文编码后的参数name:"+encodName);
+   var decodeName = window.decodeURI(window.decodeURI(Request['name']));
+   console.info("对中文解后码的参数name:"+decodeName);
+   //后台java解码
+   //URLDecoder.decode(content,"UTF-8");
+</script>
+</body>
+</html>
